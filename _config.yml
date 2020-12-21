@@ -5,13 +5,13 @@ url: "https://axhussain.github.io"
 # THEME-SPECIFIC CONFIGURATION
 title: Adnan Hussain                                    # site's title
 description: "Adnan Hussain's thoughts on C#, Web Development and Functional Programming"
-avatar: assets/img/triangle.png                         # Empty for no avatar in navbar
+avatar: assets/img/vs2019-logo.png                         # Empty for no avatar in navbar
 favicon: assets/favicon.ico                             # Icon displayed in the tab
 
 # Header and footer text
 header_text: Adnan Hussain
-header_byline: Hi, I'm Adnan Hussain. I write this blog and code in C#
-header_feature_image: assets/img/pexels/triangular.jpeg
+header_byline: Hi, I'm Adnan Hussain. I write this blog and build ASP.NET web apps.
+header_feature_image: assets/img/pexels/laptop-wallpaper.jpg
 footer_text: >
   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
