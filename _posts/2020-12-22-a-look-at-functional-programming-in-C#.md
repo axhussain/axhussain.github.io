@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A Brief Look at Functional Programming in C#
+feature-img: "assets/img/feature-img/markus-spiske-iar-afB0QQw-1280.jpg"
 tags: [functional-programming, c#]
 excerpt_separator: <!--more-->
 ---
