@@ -90,9 +90,11 @@ Pure functions clear the way for making complex systems more predictable because
 
 #### Easier to Test and Debug
 
-Side effects often also make functions more difficult to test, since their very nature implies dependencies on other parts of the system. Thus, no side effects means not having to worry about Mocks and Fakes.
+We've mentioned that FP variables are immutable - this results in our state being *predictable*.
 
-Also, because FP uses immutable variables, it makes debugging easier as well.
+In OOP, mutable state, especially once we encapsulate the object and put an interface on it, is just not predictable. In fact, it's *so* unpredictable that when we test it, we often have to mock things up so that we don't inadvertently change out state while trying to test things!
+
+But in FP we have immutability, state does not change - there are no side effects. This makes it easier to test and debug our code.
 
 
 #### Suited to Asynchronous Execution
