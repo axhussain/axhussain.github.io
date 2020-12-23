@@ -2,6 +2,7 @@
 layout: post
 title: A Brief Look at Functional Programming
 tags: [functional-programming]
+comments: true
 excerpt_separator: <!--more-->
 ---
 
