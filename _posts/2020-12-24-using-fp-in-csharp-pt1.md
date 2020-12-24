@@ -6,13 +6,11 @@ comments: true
 excerpt_separator: <!--more-->
 ---
 
-Following on from my <a href="/2020/12/22/a-look-at-functional-programming.html">brief overiew of Functional Programming</a>, this is the first in a series of blog posts describing how to make use of FP principles in C#.
-
-Your resulting projects will hopefully be more predictable, reliable, and maintainable.
+Following on from my <a href="/2020/12/22/a-look-at-functional-programming.html">brief overiew of Functional Programming</a>, this is the first in a series of blog posts describing how to make use of FP principles in C#, and hopefully make your projects more predictable, reliable, and maintainable.
 
 <!--more-->
 
-You may be thought that you need to use a [purely functional language](https://en.wikipedia.org/wiki/List_of_programming_languages_by_type#Functional_languages) like Haskell or Elm to reap the benefits of FP. But that is not the case and its possible to make even object oriented languages such as C# more functional.
+You may have thought that to reap the benefits of FP, you need to use a [purely functional language](https://en.wikipedia.org/wiki/List_of_programming_languages_by_type#Functional_languages) like Haskell or Elm. But that is not the case and its possible to make even object oriented languages such as C# more functional.
 
 What's more, understanding the theory of FP concepts is not too difficult. In Robert C Martin's [*Clean Code*](https://www.amazon.co.uk/dp/0132350882/) (a book I'm guessing many developers have read), "Uncle Bob" advocates:
 - Keeping functions small
@@ -21,7 +19,7 @@ What's more, understanding the theory of FP concepts is not too difficult. In Ro
 - Avoiding side effects, and
 - Only having one level of abstraction
 
-All of the above come naturally when programming in a functional style, even though the examples in *Clean Code* are written in Java.
+All of the above comes naturally when programming in a functional style, even though the examples in *Clean Code* are written in Java.
 
 In other words, the difference between OO and FP boils down to how you compose your application rather than the features of the language or framework.
 
