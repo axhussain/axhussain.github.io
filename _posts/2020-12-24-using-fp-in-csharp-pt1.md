@@ -87,8 +87,8 @@ You may be thinking that there isn't really much difference between the two styl
 // Imperative style
 var orderId = Guid.Parse("9043f30c-446f-421f-af70-234fe8f57c0d");
 var orderBL = new OrderBL();
-orderBL.InitializeOrder(orderId); // None of these methods have a return
-orderBL.ValidateOrder(orderId);   // value, but they do alter class members
+orderBL.InitializeOrder(orderId); // None of these methods have a return value, but they do alter class members
+orderBL.ValidateOrder(orderId);
 orderBL.ProcessOrder();
 orderBL.SaveOrder();
 ```
@@ -97,8 +97,8 @@ orderBL.SaveOrder();
 // Functional style
 var orderId = Guid.Parse("9043f30c-446f-421f-af70-234fe8f57c0d");
 var orderBL = new OrderBL();
-orderBL.InitializeOrder(orderId) // All of these methods return
-       .ValidateOrder(orderId)   // a new instance of OrderBL
+orderBL.InitializeOrder(orderId) // All of these methods return a new instance of OrderBL
+       .ValidateOrder(orderId)
        .ProcessOrder()
        .SaveOrder();             // except SaveOrder()
 ```
