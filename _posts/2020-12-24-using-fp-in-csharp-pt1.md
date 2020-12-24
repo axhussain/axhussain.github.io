@@ -6,15 +6,13 @@ comments: true
 excerpt_separator: <!--more-->
 ---
 
-For a number of years now, Functional Programming and its concepts have become increasingly significant to the software industry.
+Following on from my <a href="/2020/12/22/a-look-at-functional-programming.html">brief overiew of Functional Programming</a>, this is the first in a series of blog posts describing how to make use of FP principles in C#.
 
-By applying functional principles to your projects, your resulting applications will be more predictable, reliable, and maintainable.
+Your resulting projects will hopefully be more predictable, reliable, and maintainable.
 
 <!--more-->
 
-However, you don't have to use a [purely functional language](https://en.wikipedia.org/wiki/List_of_programming_languages_by_type#Functional_languages) like Haskell or Elm. We can follow the principles and patterns of FP even in object oriented languages such as C#.
-
-(Although as a side note, ever since the introduction of LINQ and Lambda expressions, C# has increasingly borrowed features from functionally pure languages)
+You may be thought that you need to use a [purely functional language](https://en.wikipedia.org/wiki/List_of_programming_languages_by_type#Functional_languages) like Haskell or Elm to reap the benefits of FP. But that is not the case and its possible to make even object oriented languages such as C# more functional.
 
 What's more, understanding the theory of FP concepts is not too difficult. In Robert C Martin's [*Clean Code*](https://www.amazon.co.uk/dp/0132350882/) (a book I'm guessing many developers have read), "Uncle Bob" advocates:
 - Keeping functions small

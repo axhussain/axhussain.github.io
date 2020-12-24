@@ -107,3 +107,8 @@ Finally, because pure functions don't change the overall system state, they are 
 - There is a learning curve to overcome (which I'm now finding!)
 - Immutable values combined with recursion may lead to a performance reduction
 - Using recursion instead of loops can be a daunting task
+
+
+## Further Reading
+
+I am hoping to write a series of blog posts describing practicle ways of applying FP principles in C#. The first of the these has already been published: <a href="/2020/12/24/using-fp-in-csharp-pt1.html">Using Functional Programming Principles in C# (Part 1)</a>.
