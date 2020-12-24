@@ -1,7 +1,11 @@
-# - authors: John Smith
-#   title: A Title About Citations
-#   key: ref1
+- authors: Microsoft
+  title: "[Refactor into pure functions (LINQ to XML)](https://docs.microsoft.com/en-us/dotnet/standard/linq/refactor-pure-functions)"
+  key: refactor-to-pure-funcs
 
-# - authors: Michael's Rose
-#   title: "[Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/markup-syntax-highlighting)"
-#   key: highlight
+- authors: Joydip Kanjilal
+  title: "[How to use fluent interfaces and method chaining in C#](https://www.infoworld.com/article/3572598/how-to-use-fluent-interfaces-and-method-chaining-in-csharp.html)"
+  key: howto-fluent-api
+
+- authors: Dave Fancher
+  title: "[Functional Programming with C# (Pluralsight Course)](https://app.pluralsight.com/library/courses/functional-programming-csharp)"
+  key: functions-as-data

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using Functional Programming Principles in C#
+title: Using Functional Programming Principles in C# (Part 1)
 tags: [functional-programming, c#]
 comments: true
 excerpt_separator: <!--more-->
@@ -28,59 +28,127 @@ All of the above come naturally when programming in a functional style, even tho
 In other words, the difference between OO and FP boils down to how you compose your application rather than the features of the language or framework.
 
 
-## Using Expressions and Reducing Side Effects
+## Use Expressions and Reduce Side Effects
 
-In statement-based languages like C#, many language constructs do not produce a direct result, but are instead executed for a side effect. This is the opposite of FP which is expression-based, i.e. everything produces some result.
+With regards to C# (and probably other languages), an expression is something that returns a value, whereas a statement does not. This means that expressions can be chained together. Statements are often executed for a side effect, for example, a method that returns `void` but changes the value of public or private members.
+
+However, FP is naturally expression-based; almost everything produces some result.
 
 To illustrate, let’s look at the following code snippets.
 
 ```c#
-//Statement based
-string numberType;
+public class Program
+{
+    private static string aMember = "StringOne";
 
-if (number % 2 == 0)
-{
-    numberType = "Even";
+    //HyphenatedConcat is a statement that produces a side effect (appending to aMember)
+    public static void HyphenatedConcat(string appendStr)
+    {
+        aMember += '-' + appendStr;
+    }
+
+    public static void Main()
+    {
+        HyphenatedConcat("StringTwo");
+        Console.WriteLine(aMember);
+    }
 }
-else
+```
+This will produce the following output: `StringOne-StringTwo`.
+
+The next version implements `HyphenatedConcat` as a pure function. Recall that a pure function:
+- Has no side effects. The function doesn't change any variables or the data of any type outside of the function.
+- Is consistent and predicatble. Given the same set of input data, it will always return the same output value.
+
+```c#
+public class Program
 {
-    numberType = "Odd";
+    public static string HyphenatedConcat(string s, string appendStr)
+    {
+        return (s + '-' + appendStr);
+    }
+
+    public static void Main(string[] args)
+    {
+        string s1 = "StringOne";
+        string s2 = HyphenatedConcat(s1, "StringTwo");
+        Console.WriteLine(s2);
+    }
 }
+```
+
+This second version produces the same output but in a functional style. Note that because FP variables should be immutable, the returned concatenated value is stored in another variable, `s2`.
+
+> One approach that can be very useful is to write functions that are locally impure (that is, they declare and modify local variables) but are globally pure. Such functions have many of the desirable composability characteristics, but avoid some of the more convoluted functional programming idioms, such as having to use recursion when a simple loop would accomplish the same thing.[^1]
+
+You may be thinking that there isn't really much difference between the two styles, but don't underestimate the benefit of pure functions, especially when we start chaining these functions together. I'll revisit method chaining in a future post, but as a teaser have a look at these code snippets[^2]:
+
+```c#
+// Imperative style
+var orderId = Guid.Parse("9043f30c-446f-421f-af70-234fe8f57c0d");
+var orderBL = new OrderBL();
+orderBL.InitializeOrder(orderId); // None of these methods have a return
+orderBL.ValidateOrder(orderId);   // value, but they do alter class members
+orderBL.ProcessOrder();
+orderBL.SaveOrder();
 ```
 
 ```c#
-//Expression based
-var numberType = (number % 2 == 0) ? "Even" : "Odd";
+// Functional style
+var orderId = Guid.Parse("9043f30c-446f-421f-af70-234fe8f57c0d");
+var orderBL = new OrderBL();
+orderBL.InitializeOrder(orderId) // All of these methods return
+       .ValidateOrder(orderId)   // a new instance of OrderBL
+       .ProcessOrder()
+       .SaveOrder();             // except SaveOrder()
 ```
 
-The first snippet uses the `if..else` statement to assign a value to the `numberType` string, whereas the second snippet uses the ternary operator expression.
+`SaveOrder` does not have a return value and thus must be the last method of the chain. Writing to a database or log is by definition a side effect, which is why I've named this section "*reduce* side effects" and not "*eliminate* side effects".
 
-You've probably noticed that the second snippet is shorter, which does tend to happen in FP, but the more important difference is that we no longer have an unassigned variable, nor do we have multiple places where `numberType` is assigned.
+## First Class Functions
 
-Now imagine that we need to log the value of numberType.
+When a language treats functions as a data type, the functions are said to be first class citizens of that language.
+
+This enables higher-order functions, which are functions that accept other functions as parameters and/or returns other functions. Higher-order functions allow us to compose functionality not through complex inheritance structures, but by substituting behaviour according to the function signature.
+
+C# does this through LINQ, namely: generics, extension methods, delegation, and lambda expressions.
+
+An extension method is actually a higher-order function which add functionality such as sorting, filtering, or transforming the values of any type that inherit from `IEnumerable<T>`.
+
+As an example, let's look at some code that filters a list for just the evenly numbered elements and then sorts them:
 
 ```c#
-string numberType;
-
-if (number % 2 == 0)
+// Imperative style
+var idx = 0;
+while (idx < myList.Count)
 {
-    numberType = "Even";
-}
-else
-{
-    numberType = "Odd";
+    if (myList[idx] % 2 != 0)
+        myList.RemoveAt(idx);
+    else
+        ++idx;
 }
 
-var logMessage = $"{number} is {numberType}";
+myList.Sort();
 ```
 
-Note, that we have no choice but to assign `numberType` so that it can be used in the interpolated string. But it probably won’t get used again outside of this context.
+Here, we have a while loop which indicates there is some mutable state because in order for the loop to run, the exit condition must initially be false, and then some side effect within that loop must change the condition so that the loop may terminate.
 
-By contrast, it's easy to reduce the expression version to a single expression. One of the nicest things about expressions is that they are naturally composable - expressions return a value, so they can easily be combined with other expressions or statements by using them in place of a variable or other value. For example:
+From the code we can see that both the index and the list change. Mutating `idx` isn't too much of a problem since it is likely isolated to this particular block, but changing the list could have system-wide implications if it's visible outside of the method where this code is located.
+
+Next, we have `myList.Sort()`. This is a void method, and as it doesn't return anything we must be invoking it solely for its side effect. In other words, although `Sort` does indeed sort the list, it does so by mutating the list.
+
+Here is the same code written using LINQ:
 
 ```c#
-var logMessage = $"{(number % 2 == 0 ? "Even" : "Odd")}";
+// Functional approach
+myList.Where(x => x % 2 == 0) // We tell the higher-order functions how to handle each element 
+      .OrderBy(x => x);       // in the sequence and wait for the return values.
 ```
 
-Here, we are keeping all relevant information together and have eliminated the extraneous variable.
+This declarative approach has abstracted away much of the plumbing code we saw in the imperative approach. As a result, we can focus on solving the problem, rather than having to mentally parse a bunch of code that's really only there to satisfy the compiler.
 
+Also, what might not be immediately obvious is that *`myList` is never changed*. Rather than mutating the original list, the LINQ extension methods create new sequences, where each item in the input sequence is mapped, or not mapped, to a resulting sequence depending on the corresponding lambda expression. As such, we can safely reference `myList` from elsewhere if necessary[^3].
+
+[^1]: {% include citation.html key="refactor-to-pure-funcs" %}
+[^2]: {% include citation.html key="howto-fluent-api" %}
+[^3]: {% include citation.html key="functions-as-data" %}
