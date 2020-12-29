@@ -6,7 +6,7 @@ comments: true
 excerpt_separator: <!--more-->
 ---
 
-Following on from my <a href="/2020/12/22/a-look-at-functional-programming.html">brief overiew of Functional Programming</a>, this is the first in a series of blog posts describing how to make use of FP principles in C#, and hopefully make your projects more predictable, reliable, and maintainable.
+Following on from my <a href="/2020/12/22/a-look-at-functional-programming.html">brief overview of Functional Programming</a>, this is the first in a series of blog posts describing how to make use of FP principles in C#, and hopefully make your projects more predictable, reliable, and maintainable.
 
 <!--more-->
 
@@ -54,7 +54,7 @@ This will produce the following output: `StringOne-StringTwo`.
 
 The next version implements `HyphenatedConcat` as a pure function. Recall that a pure function:
 - Has no side effects. The function doesn't change any variables or the data of any type outside of the function.
-- Is consistent and predicatble. Given the same set of input data, it will always return the same output value.
+- Is consistent and predictable. Given the same set of input data, it will always return the same output value.
 
 ```c#
 public class Program
