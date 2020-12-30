@@ -9,3 +9,7 @@
 - authors: Dave Fancher
   title: "[Functional Programming with C# (Pluralsight Course)](https://app.pluralsight.com/library/courses/functional-programming-csharp)"
   key: functions-as-data
+
+- authors: Dotnet Tutorials
+  title: "[Expression Bodied Members in C#](https://dotnettutorials.net/lesson/expression-bodied-members-csharp)"
+  key: expr-bodied-membrs
