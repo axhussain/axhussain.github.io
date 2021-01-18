@@ -39,7 +39,7 @@ By applying FP principles we’ll quickly identify the separation between data a
 - **Higher-order function:** This is a function that receives another function as an argument, or returns another function, or both.
 - **Pure function:** This is a function that has no side-effects. For a particular input, it *always* returns the same output.
 - **Referential transparency:** Because of the nature of pure functions, for a given input we can replace the function with its return value in all subsequent calls to that function.
-- **Recursion:** There is no for and while loops in FP. Instead, we rely on recursion for iteration.
+- **Recursion:** There aren't any `for` and `while` loops in FP. Instead, we rely on recursion for iteration.
 - **Variables are immutable:** It is not possible to modify a variable once it has been initialized. However, we can pass that variable to a function which returns another value.
 
 
