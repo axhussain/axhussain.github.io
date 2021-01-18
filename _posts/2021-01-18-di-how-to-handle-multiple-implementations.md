@@ -156,7 +156,7 @@ This allows you to select the implementation by the name that you set in the con
 ```c#
 public IActionResult Index()
 {
-    var myService = _myServices.FirstOrDefault(h => h.GetType().Name == AppSettings.CurrentService);
+    var myService = _myServices.FirstOrDefault(h => h.GetType().Name == _appSettings.CurrentService);
     // use the service
     return View();
 }
