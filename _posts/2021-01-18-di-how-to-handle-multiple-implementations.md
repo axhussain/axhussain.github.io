@@ -137,7 +137,7 @@ public class HomeController : Controller
     private readonly AppSettings _appSettings { get; set; }
     private readonly IEnumerable<IMyService> _myServices { get; set; }
 
-    public HomeController(ILogger<HomeController> logger, IHelloer helloer)
+    public HomeController(ILogger<HomeController> logger, IOptions<AppSettings> settings, IEnumerable<IMyService> myServices)
     {
         _logger = logger;
         _appSettings = settings.Value;
